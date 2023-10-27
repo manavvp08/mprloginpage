@@ -1,0 +1,16 @@
+/* Add custom styles to registration page elements */
+.registration-container {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.message-container {
+    margin-top: 10px;
+    display: none;
+}
+
+/* Add any additional styles you need */

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+	
+    <link rel="stylesheet" href="./login.css"> <!-- Add your custom CSS file -->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#form1").submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: $('#form1').serialize(),
+                    dataType: "json",
+                    success: function(response){
+                        $('#form1')[0].reset();
+
+                        // Display success message with a fade-out animation
+                        $('#check').html(response.Success).fadeIn().delay(3000).fadeOut();
+
+                        if (response.Success == "You are registered, you can now login.") {
+                            document.getElementById("aa").click();
+                        }
+                    },
+                    error: function() {
+                        // Handle errors
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+	<div class="container">
+		<div class="forms">
+			<div class="form login">
+				<div class="header-login">
+					<span class="title">Register Now</span>
+				</div>
+				<div >
+					<form id="form1" method="post">
+						<input type="email" name="email" placeholder="E-mail" required="" class="form-control">
+						<input type="text" name="username" placeholder="Username" required="" class="form-control">
+						<input type="password" name="password" placeholder="Password" required="" class="form-control">
+						<input type="password" name="passwordConf" placeholder="Confirm Password" required="" class="form-control">
+						<div>
+							<span>Already Registered! <a href="/login">Login</a></span>
+						</div>
+						<input type="submit" value="Register" class="login-btn">
+					</form>
+				</div>
+				<div class="message-container">
+					<span id="check"></span>
+				</div>
+				
+				<div id="LangTable"><a href="/login" id="aa"></a></div>
+			</div>	
+		</div>
+    </div>
+</body>
+</html>
